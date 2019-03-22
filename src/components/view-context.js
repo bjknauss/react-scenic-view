@@ -1,8 +1,14 @@
 import React from 'react'
 
 export const ViewContext = React.createContext({
-  view: '',
-  setView: function() {},
+  views: {},
+  deselectViews: function() {},
+  isViewSelected: function() {
+    return false
+  },
+  selectViews: function() {},
+  setViews: function() {},
+  toggleViews: function() {},
 })
 
 export default ViewContext

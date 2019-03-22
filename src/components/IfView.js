@@ -6,22 +6,22 @@ export class IfView extends React.Component {
 
   render() {
     const { view, children } = this.props
-    const context = this.context
+    const { isViewSelected } = this.context
 
-    if (view !== context.view) {
+    if (!isViewSelected(view)) {
       return null
     }
 
     if (typeof children === 'function') {
-      return children(context)
+      return children(this.context)
     }
 
     return (
       <React.Fragment>
         {React.Children.map(children, child =>
           React.cloneElement(child, {
-            view: context.view,
-            setView: context.setView,
+            view: view,
+            ...this.context,
           })
         )}
       </React.Fragment>

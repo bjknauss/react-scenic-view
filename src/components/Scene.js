@@ -1,34 +1,65 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import ViewContext from './view-context'
+import {
+  deselectViews,
+  isViewSelected,
+  selectViews,
+  toViewObject,
+  toggleViews,
+} from '../utils'
 
 export class Scene extends React.Component {
   static propTypes = {
-    view: PropTypes.string,
-    setView: PropTypes.func,
+    views: PropTypes.object,
+    setViews: PropTypes.func,
   }
 
   static defaultProps = {
-    view: '',
-    setView: function() {},
+    views: {},
+    setViews: function() {},
   }
 
   constructor(props) {
     super(props)
     this.state = {
-      view: props.view,
-      setView: props.setView,
+      deselectViews: this.deselectViews.bind(this),
+      isViewSelected: this.isViewSelected.bind(this),
+      selectViews: this.selectViews.bind(this),
+      setViews: this.setViews.bind(this),
+      toggleViews: this.toggleViews.bind(this),
+      views: toViewObject(props.views),
     }
   }
 
+  deselectViews(viewable) {
+    this.props.setViews(deselectViews(this.state.views, viewable))
+  }
+
+  isViewSelected(view) {
+    return isViewSelected(this.state.views, view)
+  }
+
+  selectViews(viewable) {
+    this.props.setViews(selectViews(this.state.views, viewable))
+  }
+
+  setViews(viewable) {
+    this.props.setViews(toViewObject(viewable))
+  }
+
+  toggleViews(viewable) {
+    this.props.setViews(toggleViews(this.state.views, viewable))
+  }
+
   componentDidUpdate(prevProps) {
-    const { view, setView } = this.props
+    const { views, setViews } = this.props
     let newState = {}
-    if (view !== prevProps.view) {
-      newState.view = view
+    if (views !== prevProps.views) {
+      newState.view = toViewObject(views)
     }
-    if (setView !== prevProps.setView) {
-      newState.setView = setView
+    if (setViews !== prevProps.setViews) {
+      newState.setViews = setViews
     }
     if (Object.keys(newState).length) {
       this.setState(newState)

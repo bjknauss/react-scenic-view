@@ -6,9 +6,9 @@ export class ElseView extends React.Component {
 
   render() {
     const { view, children } = this.props
-    const context = this.context
+    const { isViewSelected } = this.context
 
-    if (view === context.view) {
+    if (isViewSelected(view)) {
       return null
     }
 
@@ -16,8 +16,8 @@ export class ElseView extends React.Component {
       <React.Fragment>
         {React.Children.map(children, child =>
           React.cloneElement(child, {
-            view: context.view,
-            setView: context.setView,
+            view,
+            ...this.context,
           })
         )}
       </React.Fragment>

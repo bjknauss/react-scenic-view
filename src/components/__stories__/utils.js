@@ -1,20 +1,23 @@
 import React from 'react'
 import AutoScene from '../AutoScene'
 
-export const sceneDecorator = selectedView => storyFn => (
+export const sceneDecorator = selectedViews => storyFn => (
   <div style={{ textAlign: 'center' }}>
-    <AutoScene initialView={selectedView}>
-      <h1>Selected View: {selectedView}</h1>
-      <div
-        style={{
-          padding: 20,
-          margin: 20,
-          border: '2px solid lightgray',
-          borderRadius: 2,
-        }}
-      >
-        {storyFn()}
-      </div>
+    <AutoScene initialViews={selectedViews}>
+      <h1>Selected View: {selectedViews}</h1>
+      <Border>{storyFn()}</Border>
     </AutoScene>
+  </div>
+)
+
+export const Border = ({ margin = 10, padding = 10, radius = 2, children }) => (
+  <div
+    style={{
+      padding,
+      margin,
+      border: `${radius}px solid lightgray`,
+    }}
+  >
+    {children}
   </div>
 )
