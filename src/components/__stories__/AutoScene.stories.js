@@ -2,49 +2,30 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import AutoScene from '../AutoScene'
 import IfView from '../IfView'
-import { Border } from './utils'
-
-const ViewInfo = ({ view, children }) => (
-  <Border>
-    <h4>View: {view}</h4>
-    <p>{children}</p>
-  </Border>
-)
+import { IfViewInfo } from './utils'
 
 storiesOf('AutoScene', module)
   .add('with one view', () => (
     <AutoScene initialViews="a">
-      <IfView view="a">
+      <IfViewInfo view="a">
         <p>visible</p>
-      </IfView>
-      <IfView view="b">
+      </IfViewInfo>
+      <IfViewInfo view="b">
         <p>invisible</p>
-      </IfView>
+      </IfViewInfo>
     </AutoScene>
   ))
   .add('with array of views', () => (
     <AutoScene initialViews={['a', 'b']}>
-      <IfView view="a">
-        <ViewInfo>Should be visible.</ViewInfo>
-      </IfView>
-      <IfView view="b">
-        <ViewInfo>Should also be visible.</ViewInfo>
-      </IfView>
-      <IfView view="c">
-        <ViewInfo>Should not be visible.</ViewInfo>
-      </IfView>
+      <IfViewInfo view="a">Should be visible.</IfViewInfo>
+      <IfViewInfo view="b">Should also be visible.</IfViewInfo>
+      <IfViewInfo view="c">Should not be visible.</IfViewInfo>
     </AutoScene>
   ))
   .add('with object of views', () => (
     <AutoScene initialViews={{ a: true, b: true, c: false }}>
-      <IfView view="a">
-        <ViewInfo>Should be visible.</ViewInfo>
-      </IfView>
-      <IfView view="b">
-        <ViewInfo>Should also be visible.</ViewInfo>
-      </IfView>
-      <IfView view="c">
-        <ViewInfo>Should not be visible.</ViewInfo>
-      </IfView>
+      <IfViewInfo view="a">Should be visible.</IfViewInfo>
+      <IfViewInfo view="b">Should also be visible.</IfViewInfo>
+      <IfViewInfo view="c">Should not be visible.</IfViewInfo>
     </AutoScene>
   ))

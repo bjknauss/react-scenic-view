@@ -1,5 +1,6 @@
 import React from 'react'
 import AutoScene from '../AutoScene'
+import IfView from '../IfView'
 
 export const sceneDecorator = selectedViews => storyFn => (
   <div style={{ textAlign: 'center' }}>
@@ -20,4 +21,13 @@ export const Border = ({ margin = 10, padding = 10, radius = 2, children }) => (
   >
     {children}
   </div>
+)
+
+export const IfViewInfo = ({ view, children }) => (
+  <IfView view={view}>
+    <Border>
+      <h4>View: {view}</h4>
+      <p>{children}</p>
+    </Border>
+  </IfView>
 )
