@@ -5,13 +5,13 @@ import IfView from '../IfView'
 
 storiesOf('IfView', module)
   .addDecorator(sceneDecorator('a'))
-  .add('with view a (selected)', () => (
+  .add('with selected view', () => (
     <IfView view="a">
       <p>visible</p>
     </IfView>
   ))
   .add(
-    'with view b (unselected)',
+    'with unselected view',
     () => (
       <IfView view="b">
         <p>not visible</p>
