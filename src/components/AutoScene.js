@@ -8,6 +8,7 @@ import {
   toggleViews,
 } from '../utils'
 import { Viewable } from '../shared-props'
+import PropTypes from 'prop-types'
 
 export class AutoScene extends React.Component {
   static defaultProps = {
