@@ -12,12 +12,12 @@ import {
 export class Scene extends React.Component {
   static propTypes = {
     views: PropTypes.object,
-    setViews: PropTypes.func,
+    onViewsChange: PropTypes.func,
   }
 
   static defaultProps = {
     views: {},
-    setViews: function() {},
+    onViewsChange: function() {},
   }
 
   constructor(props) {
@@ -33,7 +33,7 @@ export class Scene extends React.Component {
   }
 
   deselectViews(viewable) {
-    this.props.setViews(deselectViews(this.state.views, viewable))
+    this.props.onViewsChange(deselectViews(this.state.views, viewable))
   }
 
   isViewSelected(view) {
@@ -41,25 +41,22 @@ export class Scene extends React.Component {
   }
 
   selectViews(viewable) {
-    this.props.setViews(selectViews(this.state.views, viewable))
+    this.props.onViewsChange(selectViews(this.state.views, viewable))
   }
 
   setViews(viewable) {
-    this.props.setViews(toViewObject(viewable))
+    this.props.onViewsChange(toViewObject(viewable))
   }
 
   toggleViews(viewable) {
-    this.props.setViews(toggleViews(this.state.views, viewable))
+    this.props.onViewsChange(toggleViews(this.state.views, viewable))
   }
 
   componentDidUpdate(prevProps) {
-    const { views, setViews } = this.props
+    const { views } = this.props
     let newState = {}
     if (views !== prevProps.views) {
-      newState.view = toViewObject(views)
-    }
-    if (setViews !== prevProps.setViews) {
-      newState.setViews = setViews
+      newState.views = toViewObject(views)
     }
     if (Object.keys(newState).length) {
       this.setState(newState)
