@@ -1,6 +1,6 @@
 {
   "name": "@knaussb/scenic-view",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "A simple routing library for managing which views are rendered in React.",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
