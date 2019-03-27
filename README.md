@@ -1,5 +1,9 @@
 ## Scenic View
 
+[![Coverage Status][coverage-svg]][coverage-url]
+[![Build Status][build-svg]][build-url]
+[![npm version][version-svg]][version-url]
+
 A simple view management library to make managing conditionally rendered components simple. This library is still in early stages so the API is likely to change. This library uses React's context API to control what components get rendered. If you have any questions or suggestions, I'd love to hear them.
 
 Here is a very simple example for demonstration purposes:
@@ -80,3 +84,10 @@ const Example = props => (
   </AutoScene>
 )
 ```
+
+[coverage-svg]: https://coveralls.io/repos/github/bjknauss/react-scenic-view/badge.svg?branch=master
+[coverage-url]: https://coveralls.io/github/bjknauss/react-scenic-view?branch=master
+[build-svg]: https://travis-ci.org/bjknauss/react-scenic-view.svg?branch=master
+[build-url]: https://travis-ci.org/bjknauss/react-scenic-view
+[version-svg]: https://badge.fury.io/js/%40knaussb%2Fscenic-view.svg
+[version-url]: https://www.npmjs.com/package/@knaussb/scenic-view
